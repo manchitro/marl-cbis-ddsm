@@ -18,7 +18,7 @@ Multiple reinforcement-learning agents independently scan small patches of a mam
 
 100 epochs, evaluated on CBIS-DDSM mass ROI images (benign vs. malignant).
 
-**Honest comparison to other published methods on the same dataset:**
+**Comparison to other published methods on the same dataset:**
 
 | Method | Year | Accuracy |
 |---|---|---|
@@ -29,7 +29,7 @@ Multiple reinforcement-learning agents independently scan small patches of a mam
 | **This method** | — | **82.45%** |
 | Khan et al. | 2019 | 77.66% |
 
-This doesn't beat the CNN-based state of the art on raw accuracy — it lands in the middle of the pack. The paper is explicit about this and treats the contribution as architectural/methodological (a decentralized, partial-observation approach that scales differently than whole-image CNN classifiers) rather than a leaderboard win. Worth stating plainly here rather than only in the fine print.
+This doesn't beat the CNN-based state of the art on raw accuracy — it lands in the middle of the pack. The paper treats the contribution as architectural/methodological (a decentralized, partial-observation approach that scales differently than whole-image CNN classifiers) rather than a leaderboard win.
 
 ## Problem
 
@@ -58,7 +58,7 @@ After a fixed number of steps (32, by default), each agent emits a prediction; t
 
 ## Limitations (from the paper)
 
-Stated directly by the authors, not softened here:
+As stated by the authors:
 - Evaluated on a single dataset (CBIS-DDSM) — generalization to other mammogram datasets untested.
 - Trained only on mass abnormalities, not calcifications, which have different visual characteristics.
 - Accuracy trails several CNN-based competitors (see table above) — the authors describe the model as "far from being useful in the field" in its current form.
@@ -97,7 +97,7 @@ python -m marl_classification \
   -o ./out/cbis
 ```
 
-Flag reference (cross-checked against the paper, not just the CLI help text): `-a` agent count · `--step` steps per episode · `--action` the four move directions, each a 5px shift · `--img-size` input ROI size · `--nb-class` 2 (benign/malignant) · `--f` agent observation window size (24px) · `--nm` inter-agent message size · `--nb`/`--na`/`--nlb`/`--nla` LSTM/network hidden sizes (256, matching the paper) · `--eps`/`--eps-dec` exploration rate and decay.
+Flag reference: `-a` agent count · `--step` steps per episode · `--action` the four move directions, each a 5px shift · `--img-size` input ROI size · `--nb-class` 2 (benign/malignant) · `--f` agent observation window size (24px) · `--nm` inter-agent message size · `--nb`/`--na`/`--nlb`/`--nla` LSTM/network hidden sizes (256, matching the paper) · `--eps`/`--eps-dec` exploration rate and decay.
 
 ## Citation
 
